@@ -6,7 +6,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
         var xhttp = new XMLHttpRequest();
         
         xhttp.onload = function() {
-            callback(xhttp.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                callback(xhttp.responseText);
+            }
         };
         
         xhttp.open("GET", request.url, true);
