@@ -4,23 +4,18 @@
 
 (function() {
   'use strict';
-  console.log('Running...');
   $(document).ready(function() {
-    console.log('Ready');
     var docInfoPs = $("p.SS_DocumentInfo");
-    console.log('Found ' + docInfoPs.length);
     docInfoPs.each(function(i) {
       var p = docInfoPs[i];
       var matches7thCircuit = p.textContent.match(/United States Court of Appeals for the Seventh Circuit/);
       if (matches7thCircuit) {
-        console.log('Found seventh circuit');
         docInfoPs.each(function(i2) {
           var p2 = docInfoPs[i2];
           var matchesAppealNumber = p2.textContent.match(/No\.\s*(\d+)\-(\d+)/);
           if (matchesAppealNumber) {
             var year = matchesAppealNumber[1];
             var sequence = matchesAppealNumber[2];
-            console.log("Found " + year + ", " + sequence);
 
             chrome.runtime.sendMessage(
               {
@@ -28,8 +23,6 @@
                 url: "http://media.ca7.uscourts.gov/oralArguments/oar.jsp?caseyear="+year+"&casenumber="+sequence+"&listCase=List+case%28s%29"
               },
               function(responseText) {
-                console.log(responseText);
-                
                 var parsed = jQuery.parseHTML(responseText);
                 // http://stackoverflow.com/questions/1520429/is-there-a-css-selector-for-elements-containing-certain-text
                 var argLink = $(parsed).find('a:contains("oral argument")');
