@@ -1,7 +1,7 @@
 {
     "name": "seventh-audio",
 	"description": "Adds a direct link to download 7th Circuit argument audio",
-	"version": "1.0",
+	"version": "1.0.1",
     "manifest_version": 2,
     "permissions": [
         "http://media.ca7.uscourts.gov/*"
