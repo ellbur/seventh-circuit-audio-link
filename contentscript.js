@@ -27,7 +27,7 @@
                 // http://stackoverflow.com/questions/1520429/is-there-a-css-selector-for-elements-containing-certain-text
                 var argLink = $(parsed).find('a:contains("oral argument")');
                 
-                if (argLink) {
+                if (argLink.length > 0) {
                   var argURL = "http://media.ca7.uscourts.gov" + argLink.attr('href');
                 
                   docInfoPs.each(function(i3) {
